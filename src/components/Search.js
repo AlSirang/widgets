@@ -48,7 +48,7 @@ const Search = () => {
     </div>
   ));
   return (
-    <div className="ui container">
+    <>
       <div className="ui segment">
         <div className="ui form">
           <div className="field">
@@ -66,7 +66,7 @@ const Search = () => {
         </div>
       </div>
       <div className="ui divided list">{mapedResults}</div>
-    </div>
+    </>
   );
 };
 
