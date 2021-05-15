@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+
 const Convert = ({ text, language }) => {
   const [translatedText, setTranslatedText] = useState(""),
-    [debouncedText, setDebouncedText] = useState(translatedText);
+    [debouncedText, setDebouncedText] = useState(text);
 
   useEffect(() => {
     let timerId = setTimeout(() => {
-      setDebouncedText(translatedText);
+      setDebouncedText(text);
     }, 700);
+
     return () => {
       clearTimeout(timerId);
     };
-  }, [translatedText]);
+  }, [text]);
 
   useEffect(() => {
     const translateText = async () => {
@@ -23,7 +26,7 @@ const Convert = ({ text, language }) => {
           params: {
             q: debouncedText,
             target: language.value,
-            key: "GOOGLE API KEY",
+            key: GOOGLE_KEY,
           },
         }
       );
